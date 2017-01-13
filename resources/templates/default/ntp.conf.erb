@@ -14,7 +14,7 @@ restrict default nomodify notrap nopeer noquery
 # Permit all access over the loopback interface.  This could
 # be tightened as well, but to do so would effect some of
 # the administrative functions.
-restrict 127.0.0.1 
+restrict 127.0.0.1
 restrict ::1
 
 # Hosts on local network are less restricted.
@@ -22,10 +22,19 @@ restrict ::1
 
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
+
+<% if @server_0 != "" or !@server_0.nil? %>
 server <%= @server_0 %> iburst
+<% end %>
+<% if @server_1 != "" or !@server_1.nil? %>
 server <%= @server_1 %> iburst
+<% end %>
+<% if @server_2 != "" or !@server_2.nil? %>
 server <%= @server_2 %> iburst
+<% end %>
+<% if @server_3 != "" or !@server_3.nil? %>
 server <%= @server_3 %> iburst
+<% end %>
 
 #broadcast 192.168.1.255 autokey        # broadcast server
 #broadcastclient                        # broadcast client
@@ -40,7 +49,7 @@ server <%= @server_3 %> iburst
 includefile /etc/ntp/crypto/pw
 
 # Key file containing the keys and key identifiers used when operating
-# with symmetric key cryptography. 
+# with symmetric key cryptography.
 keys /etc/ntp/keys
 
 # Specify the key identifiers which are trusted.
